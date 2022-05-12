@@ -37,6 +37,10 @@ export default function ShoppingList() {
     setNewItem('');
   }
 
+  function handleDeleteItem(id) {
+    dispatch({ type: 'DELETE_ITEM', payload: { id: id } });
+  }
+
   return (
     <div className={styles['list-page']}>
       <form action=""
@@ -57,6 +61,7 @@ export default function ShoppingList() {
             <li key={item.id}>
               <Item
                 item={item}
+                handleDeleteItem={handleDeleteItem}
               />
             </li>
           )
