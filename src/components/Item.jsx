@@ -33,13 +33,14 @@ export default function Item({ item, handleDeleteItem, handleUpdateItem }) {
         : <>
             <input
               type="checkbox"
-              name=""
+              name="checkbox"
               id=""
-            checked={item.purchased}
-            onChange={(e) => handleUpdateItem({ ...item, purchased: e.target.checked})}
-            
+              checked={item.purchased}
+              // onChange of check run handle update, spread in item and update purchased to value of checked
+              onChange={(e) => handleUpdateItem({ ...item, purchased: e.target.checked})}
             />
             <p
+              // styling to line through if purchased
               style={{ textDecoration: item.purchased ? 'line-through' : null }}
             >{item.itemName}</p>
             <button
