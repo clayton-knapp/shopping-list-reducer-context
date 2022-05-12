@@ -2,6 +2,7 @@ import React from 'react';
 import styles from '../App.css';
 import { useState, useReducer } from 'react';
 import Item from '../components/Item';
+import { useListContext } from '../context/ListProvider';
 
 // // initial List state
 // const initialList = [
@@ -45,6 +46,9 @@ import Item from '../components/Item';
 
 export default function ShoppingList() {
   
+  // use context
+  const { listState, handleAddItem, handleDeleteItem, handleUpdateItem } = useListContext();
+
   // still track state of user input
   const [newItem, setNewItem] = useState('');
   
@@ -55,6 +59,7 @@ export default function ShoppingList() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    handleAddItem(newItem);
     // dispatch({ type: 'ADD_ITEM', payload: { itemName: newItem } });
     setNewItem('');
   }
