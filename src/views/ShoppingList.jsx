@@ -17,6 +17,9 @@ function listReducer(listState, action) {
         { id: Date.now(), item: action.payload.item, purchased: false },
         ...listState
       ];
+    case 'DELETE_ITEM':
+      // this filters through our list and only returns items with id's that DO NOT match the item we are trying to delete - hence not including it
+      return listState.filter((item) => item.id != action.payload.id);
   }
 
 }
