@@ -19,6 +19,7 @@ export default function Item({ item, handleDeleteItem, handleUpdateItem }) {
             }}
           >
             <input
+              required
               type="text"
               placeholder='Edit item'
               value={updatedItemName}
