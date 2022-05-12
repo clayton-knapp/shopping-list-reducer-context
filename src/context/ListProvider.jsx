@@ -56,7 +56,7 @@ export function ListProvider({ children }) {
   const [listState, dispatch] = useReducer(listReducer, initialList);
 
   // CRUD functions to dispatch to listReducer
-  function handleAddItem() {
+  function handleAddItem(newItem) {
     // e.preventDefault();
     dispatch({ type: 'ADD_ITEM', payload: { itemName: newItem } });
     // setNewItem('');
