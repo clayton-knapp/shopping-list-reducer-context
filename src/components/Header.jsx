@@ -11,7 +11,9 @@ export default function Header() {
       <h2>My Shopping List</h2>
       <h3>Total Items: {listState.length}</h3>
       <button
-        onClick={clearList}
+        onClick={() => {
+          window.confirm('Are you sure you wish to clear your cart?') ? clearList() : onCancel("cancel")
+        }}
       >Clear Cart</button>
     </header>
   )
