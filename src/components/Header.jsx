@@ -3,7 +3,7 @@ import styles from '../App.css';
 import { useListContext } from '../context/ListProvider';
 
 export default function Header() {
-  const { listState } = useListContext();
+  const { listState, clearList } = useListContext();
 
 
   return (
@@ -11,7 +11,7 @@ export default function Header() {
       <h2>My Shopping List</h2>
       <h3>Total Items: {listState.length}</h3>
       <button
-      
+        onClick={clearList}
       >Clear Cart</button>
     </header>
   )

@@ -41,6 +41,8 @@ function listReducer(listState, action) {
       })
       // console.log('newList', newList);
       return newList;
+    case 'CLEAR_LIST':
+      return [];
   }
 }
 
@@ -57,9 +59,7 @@ export function ListProvider({ children }) {
 
   // CRUD functions to dispatch to listReducer
   function handleAddItem(newItem) {
-    // e.preventDefault();
     dispatch({ type: 'ADD_ITEM', payload: { itemName: newItem } });
-    // setNewItem('');
   }
 
   function handleDeleteItem(id) {
@@ -71,9 +71,19 @@ export function ListProvider({ children }) {
     dispatch({ type: 'UPDATE_ITEM', payload: { updatedItem } });
   }
 
+  function clearList() {
+    dispatch({ type: 'CLEAR_LIST' });
+  }
+
   return (
     <ListContext.Provider
-      value= {{ listState, handleAddItem, handleDeleteItem, handleUpdateItem }}
+      value={{
+        listState,
+        handleAddItem,
+        handleDeleteItem,
+        handleUpdateItem,
+        clearList
+      }}
     >
       {children}
     </ListContext.Provider>
