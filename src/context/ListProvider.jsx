@@ -2,15 +2,22 @@ import {
   createContext,
   useContext
 } from 'react';
-import { useReducer } from 'react';
+import {
+  useReducer,
+  useEffect
+} from 'react';
 
 
 // initial List state
-const initialList = [
+const initialList =
+  // JSON.parse(localStorage.getItem('list-state')) ||
+  [
   { id: 1, itemName: 'Avocado', purchased: false },
   { id: 2, itemName: 'Bread', purchased: false },
   { id: 3, itemName: 'Mustard', purchased: false },
 ];
+
+// const listState = JSON.parse(localStorage.getItem('list-state'));
 
 // reducer function
 function listReducer(listState, action) {
@@ -54,8 +61,22 @@ const ListContext = createContext();
 // Set up Provider component
 export function ListProvider({ children }) {
 
-  // useReducer
-  const [listState, dispatch] = useReducer(listReducer, initialList);
+  // get the list from local storage
+  const listFromStorage = JSON.parse(localStorage.getItem('list-state'));
+
+  // console.log('listFromStorage', listFromStorage);
+
+  // useReducer - initialize with listFromStorage if exists otherwise with initialList
+  const [listState, dispatch] = useReducer(listReducer, listFromStorage || initialList);
+  
+  // console.log('listState', listState);
+  
+  // useEffect to save every state change in local storage - must come after reducer
+  useEffect(() => {
+    localStorage.setItem('list-state', JSON.stringify(listState));
+  }, [listState]);
+  
+
 
   // CRUD functions to dispatch to listReducer
   function handleAddItem(newItem) {
@@ -67,7 +88,7 @@ export function ListProvider({ children }) {
   }
 
   function handleUpdateItem(updatedItem) {
-    console.log('updatedItem', updatedItem);
+    // console.log('updatedItem', updatedItem);
     dispatch({ type: 'UPDATE_ITEM', payload: { updatedItem } });
   }
 

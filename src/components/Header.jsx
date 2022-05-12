@@ -7,7 +7,7 @@ export default function Header() {
 
   // STRETCH we want to find the number of un-purchased items (unchecked)
   const unpurchasedList = listState.filter((item) => item.purchased === false);
-  console.log('unpurchasedList', unpurchasedList);
+  // console.log('unpurchasedList', unpurchasedList);
 
   return (
     <header className={styles['header']}>
