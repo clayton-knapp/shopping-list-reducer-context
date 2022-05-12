@@ -26,3 +26,14 @@
 .list-page * {
   padding: 10px;
 }
+
+.item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.item button {
+  margin: 10px;
+}

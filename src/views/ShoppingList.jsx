@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from '../App.css';
 import { useState, useReducer } from 'react';
+import Item from '../components/Item';
 
 // initial List state
 const initialList = [
@@ -33,6 +34,7 @@ export default function ShoppingList() {
   function handleAddItem(e) {
     e.preventDefault();
     dispatch({ type: 'ADD_ITEM', payload: { item: newItem } });
+    setNewItem('');
   }
 
   return (
@@ -52,7 +54,11 @@ export default function ShoppingList() {
       <ul>
         {
           listState.map((item) => 
-            <li key={item.id}>{item.item}</li>
+            <li key={item.id}>
+              <Item
+                item={item}
+              />
+            </li>
           )
         }
       </ul>
