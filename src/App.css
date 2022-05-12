@@ -15,3 +15,14 @@
 .header * {
   padding: 10px;
 }
+
+.list-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.list-page * {
+  padding: 10px;
+}

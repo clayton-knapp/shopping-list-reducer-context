@@ -9,7 +9,14 @@ const initialList = [
   { id: 3, item: 'Mustard', purchased: false },
 ];
 
-function listReducer(state, action) {
+function listReducer(listState, action) {
+  switch (action.type) {
+    case 'ADD_ITEM':
+      return [
+        { id: Date.now(), item: action.payload.item, purchased: false },
+        ...listState
+      ];
+  }
 
 }
 
@@ -20,17 +27,18 @@ export default function ShoppingList() {
   const [newItem, setNewItem] = useState('');
 
   // useReducer
-  const [state, dispatch] = useReducer(listReducer, initialList);
+  const [listState, dispatch] = useReducer(listReducer, initialList);
 
 
-  function handleSubmitItem(e) {
+  function handleAddItem(e) {
     e.preventDefault();
+    dispatch({ type: 'ADD_ITEM', payload: { item: newItem } });
   }
 
   return (
-    <div>
+    <div className={styles['list-page']}>
       <form action=""
-        onSubmit={handleSubmitItem}
+        onSubmit={handleAddItem}
       >
         <input
           type="text"
@@ -41,6 +49,13 @@ export default function ShoppingList() {
         />
         <button>Add Item</button>
       </form>
+      <ul>
+        {
+          listState.map((item) => 
+            <li key={item.id}>{item.item}</li>
+          )
+        }
+      </ul>
 
     </div>
   )
