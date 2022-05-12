@@ -26,11 +26,22 @@ export default function Item({ item, handleDeleteItem, handleUpdateItem }) {
             />
             <button
               name='save'
+              type='submit'
             >Save</button>
           </form>  
         </>
         : <>
-            <p>{item.itemName}</p>
+            <input
+              type="checkbox"
+              name=""
+              id=""
+            checked={item.purchased}
+            onChange={(e) => handleUpdateItem({ ...item, purchased: e.target.checked})}
+            
+            />
+            <p
+              style={{ textDecoration: item.purchased ? 'line-through' : null }}
+            >{item.itemName}</p>
             <button
               name='edit'
               onClick={() => {

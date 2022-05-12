@@ -25,7 +25,8 @@ function listReducer(listState, action) {
         if (item.id === action.payload.updatedItem.id) {
           return {
             ...item,
-            itemName: action.payload.updatedItem.itemName
+            itemName: action.payload.updatedItem.itemName,
+            purchased: action.payload.updatedItem.purchased
           };
         } else {
           return item;
@@ -61,7 +62,7 @@ export default function ShoppingList() {
   }
 
   function handleUpdateItem(updatedItem) {
-    // console.log('item', item)
+    console.log('updatedItem', updatedItem);
     dispatch({ type: 'UPDATE_ITEM', payload: { updatedItem } });
   }
 
