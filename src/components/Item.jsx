@@ -2,30 +2,35 @@ import React from 'react';
 import styles from '../App.css';
 import { useState } from 'react';
 
-export default function Item({ item, handleDeleteItem }) {
+export default function Item({ item, handleDeleteItem, handleUpdateItem }) {
   const [isEditing, setIsEditing] = useState(false);
-  const [updatedItem, setUpdatedItem] = useState('');
+  const [updatedItemName, setUpdatedItemName] = useState('');
 
   return (
     <div className={styles['item']}>
       {isEditing
         ? <>
-          <form action="">
+          <form action=""
+            onSubmit={(e) => {
+              // spread in existing item, and overwrite with new item name
+              e.preventDefault();
+              handleUpdateItem({ ...item, itemName: updatedItemName });
+              setIsEditing(false);
+            }}
+          >
             <input
               type="text"
               placeholder='Edit item'
-              value={updatedItem}
-              onChange={(e) => setUpdatedItem(e.target.value)}
+              value={updatedItemName}
+              onChange={(e) => setUpdatedItemName(e.target.value)}
             />
             <button
-              onSubmit={() => {
-                setIsEditing(false);
-              }}
+              name='save'
             >Save</button>
           </form>  
         </>
         : <>
-            <p>{item.item}</p>
+            <p>{item.itemName}</p>
             <button
               name='edit'
               onClick={() => {
