@@ -18,7 +18,7 @@ export default function Header() {
       </div>
       <button
         onClick={() => {
-          window.confirm('Are you sure you wish to clear your cart?') ? clearList() : onCancel("cancel")
+          window.confirm('Are you sure you wish to clear your cart?') ? clearList() : null
         }}
       >Clear Cart</button>
     </header>

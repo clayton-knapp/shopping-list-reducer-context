@@ -26,6 +26,7 @@ export default function Item({ item, handleDeleteItem, handleUpdateItem }) {
               onChange={(e) => setUpdatedItemName(e.target.value)}
             />
             <button
+              aria-label={`${item.itemName}-save`}
               name='save'
               type='submit'
             >Save</button>
@@ -33,6 +34,7 @@ export default function Item({ item, handleDeleteItem, handleUpdateItem }) {
         </>
         : <>
             <input
+              aria-label={`${item.itemName}-checkbox`}
               type="checkbox"
               name="checkbox"
               id=""
@@ -46,6 +48,7 @@ export default function Item({ item, handleDeleteItem, handleUpdateItem }) {
             >{item.itemName}</p>
             <button
               name='edit'
+              aria-label={`${item.itemName}-edit`}
               onClick={() => {
                 setIsEditing(true);
                 }}
@@ -55,6 +58,7 @@ export default function Item({ item, handleDeleteItem, handleUpdateItem }) {
     
       <button
         name='delete'
+        aria-label={`${item.itemName}-delete`}
         onClick={() => handleDeleteItem(item.id)}
       >Delete</button>
     </div>
